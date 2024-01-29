@@ -3,30 +3,22 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background(255);
 
   // Draw plate
   fill(200);
-  ellipse(width / 2, height / 2, 300, 200);
+  ellipse(width / 2, height / 2 + 50, 300, 200);
 
-  // Draw pie
+  // Draw pie slice
   fill(255, 165, 79); // Color for the pie (you can adjust this)
   beginShape();
-  vertex(width / 2, height / 2); // Center of the pie
-  for (let i = 0; i < PI; i += PI / 180) {
-    let x = width / 2 + cos(i) * 150;
-    let y = height / 2 + sin(i) * 100;
-    vertex(x, y);
-  }
+  vertex(width / 2, height / 2 + 50); // Center of the pie slice
+  arc(width / 2, height / 2 + 50, 200, 150, PI / 6, 11 * PI / 6, PIE);
   endShape(CLOSE);
 
   // Draw whipped cream
   fill(255); // White color for whipped cream
-  beginShape();
-  for (let i = 0; i < PI; i += PI / 180) {
-    let x = width / 2 + cos(i) * 130;
-    let y = height / 2 + sin(i) * 80;
-    vertex(x, y);
-  }
-  endShape(CLOSE);
+  ellipse(width / 2 + 30, height / 2 - 20, 40, 20);
+  ellipse(width / 2 - 20, height / 2 - 10, 40, 20);
+  ellipse(width / 2 - 10, height / 2 + 10, 40, 20);
 }
