@@ -8,3 +8,7 @@ function draw() {
   circle(35,55,25);
   
 }
+function draw() {
+  background(220);
+  ellipse(30,40,50,60);
+}
