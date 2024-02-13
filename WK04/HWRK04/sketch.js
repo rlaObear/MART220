@@ -1,10 +1,15 @@
+//Thunder_player
 var pick;
 var xImage = 100, yImage = 100;
 var speedX, speedY;
-
+//Rothgar_chaser
 var pick2;
 var xImage2 = 500, yImage2 = 25;
 var speedX2, speedY2;
+//Orchid_3rd_image
+var pick3;
+var xImage3 = 300, yImage3 = 25;
+var speedX3, speedY3;
 
 var myFont;
 
@@ -18,11 +23,16 @@ function setup() {
     createCanvas(1000, 700);
     pick = loadImage("images/rothgar.png");
     pick2 = loadImage("images/thunder.png");
+    pick3 = loadImage("images/orchid.png");
+
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
+
     speedX = random(1, 5);
     speedY = random(1, 5);
     speedX2 = random(1, 5);
     speedY2 = random(1, 5);
+    speedX3 = random(1, 5);
+    speedY3 = random(1, 5);
 
     setInterval(changeTime, 1000);
 }
@@ -47,6 +57,12 @@ function draw() {
             xImage2 = width - 100;
         } else if (xImage2 <= 0) {
             xImage2 = 0;
+        }
+    image(pick3, xImage3, yImage3);
+        if (xImage3 >= width - 100) {
+            xImage3 = width - 100;
+        } else if (xImage3 <= 0) {
+            xImage3 = 0;
         }
 
 // Check for collision and display "Ouch!!!" text
