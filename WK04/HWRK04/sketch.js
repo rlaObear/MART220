@@ -1,7 +1,7 @@
 //thunder player//
 var pick;
 //thunder location at start//
-var xImage = 100, yImage = 100;
+var xImage = 200, yImage = 100;
 var speedX, speedY;
 var myFont;
 //Game timer//
@@ -93,7 +93,8 @@ function draw() {
             fill(36, 250, 100);
             textSize(24);
             text("You made it! Next Level!!", 375, 300);
-            levelComplete = true; // Set the flag to true once the message is displayed
+            levelComplete = true; 
+            // Set the flag to true once the message is displayed
         }
     }
 }
@@ -119,8 +120,7 @@ function changeTime() {
         speedY *= 2;
         speedX2 *= 2;
         speedY2 *= 2;
-
-        // If no collision occurred within 10 seconds, set levelComplete to true
+// If no collision occurred within 10 seconds, set levelComplete to true
         if (!levelComplete) {
             levelComplete = true;
             fill(36, 250, 100);
