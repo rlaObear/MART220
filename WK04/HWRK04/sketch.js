@@ -22,6 +22,7 @@ function setup() {
     pick = loadImage("images/rothgar.png");
     pick2 = loadImage("images/thunder.png");
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
+    myFont2 = loadFont("fonts/Dissfunction.ttf");
     speedX = random(1, 5);
     speedY = random(1, 5);
     speedX2 = random(1, 5);
@@ -81,7 +82,7 @@ function draw() {
 
     fill(100, 252, 169);
     textSize(24);
-    textFont(myFont);
+    textFont(myFont2);
 
     if (myTime > 0) {
         fill(36, 250, 100);
