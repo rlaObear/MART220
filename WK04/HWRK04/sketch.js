@@ -1,20 +1,17 @@
-//thunder player//
 var pick;
-//thunder location at start//
-var xImage = 200, yImage = 100;
+var xImage = 100, yImage = 100;
 var speedX, speedY;
-var myFont;
-//Game timer//
-var myTime = 10;
-//rothgar_chaser//
+
 var pick2;
-//rothgar location at start//
 var xImage2 = 500, yImage2 = 25;
 var speedX2, speedY2;
-//Flag to display Ouch//
+
+var myFont;
+
+var myTime = 10;
+
 var displayOuch = false;
 var ouchDisplayTime = 0;
-//Flag to display level complete//
 var levelComplete = false;
 
 function setup() {
@@ -22,7 +19,6 @@ function setup() {
     pick = loadImage("images/rothgar.png");
     pick2 = loadImage("images/thunder.png");
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
-    myFont2 = loadFont("fonts/Dissfunction.ttf");
     speedX = random(1, 5);
     speedY = random(1, 5);
     speedX2 = random(1, 5);
@@ -46,22 +42,20 @@ function draw() {
         speedY *= -1;
     }
 
-    // Draw the "thunder.png" image
     image(pick2, xImage2, yImage2);
-    // Check bounds for thunder.png
         if (xImage2 >= width - 100) {
             xImage2 = width - 100;
         } else if (xImage2 <= 0) {
             xImage2 = 0;
         }
 
-    // Check for collision and display "Ouch!!!" text
+// Check for collision and display "Ouch!!!" text
     if (checkCollision(xImage, yImage, 100, 100, xImage2, yImage2, 100, 100)) {
         speedX *= -1;
         speedY *= -1;
         speedX2 *= -1;
         speedY2 *= -1;
-// Set the flag to true
+
         displayOuch = true; 
 // Record the time when Ouch is displayed
         ouchDisplayTime = millis(); 
@@ -70,19 +64,14 @@ function draw() {
     }
 
     if (displayOuch) {
-        fill(36, 250, 100); // Set the fill color to white
+        fill(36, 250, 100);
         textSize(30);
         text('Ouch!', xImage2 - 50, yImage2 - 50);
 
-        // Check if 2 seconds have passed since Ouch was displayed
-        if (millis() - ouchDisplayTime > 2000) {
-            displayOuch = false; // Reset the flag after 3 seconds
+    if (millis() - ouchDisplayTime > 2000) {
+            displayOuch = false; 
         }
     }
-
-    fill(100, 252, 169);
-    textSize(24);
-    textFont(myFont2);
 
     if (myTime > 0) {
         fill(36, 250, 100);
@@ -93,8 +82,7 @@ function draw() {
             fill(36, 250, 100);
             textSize(24);
             text("You made it! Next Level!!", 375, 300);
-            levelComplete = true; 
-            // Set the flag to true once the message is displayed
+            levelComplete = true;
         }
     }
 }
@@ -120,7 +108,8 @@ function changeTime() {
         speedY *= 2;
         speedX2 *= 2;
         speedY2 *= 2;
-// If no collision occurred within 10 seconds, set levelComplete to true
+
+        // If no collision occurred within 10 seconds, set levelComplete to true
         if (!levelComplete) {
             levelComplete = true;
             fill(36, 250, 100);
