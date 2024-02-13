@@ -4,11 +4,11 @@ var xImage = 100, yImage = 100;
 var speedX, speedY;
 //Rothgar_chaser
 var pick2;
-var xImage2 = 500, yImage2 = 25;
+var xImage2 = 500, yImage2 = 100;
 var speedX2, speedY2;
 //Orchid_3rd_image
 var pick3;
-var xImage3 = 300, yImage3 = 25;
+var xImage3 = 300, yImage3 = 100;
 
 var myFont;
 
@@ -40,6 +40,9 @@ function draw()
     textSize(25);
     fill(36, 250, 100);
     text("Created By: Obear", 770, 690)
+    textSize(25);
+    fill(36, 250, 100);
+    text("Fun with Charactors", 10, 690)
     
     image(pick, xImage, yImage);
     xImage += speedX;
