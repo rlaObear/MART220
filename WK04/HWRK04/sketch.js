@@ -36,6 +36,10 @@ function setup() {
 function draw() 
 {
     background(164, 109, 207);
+
+    textSize(25);
+    fill(36, 250, 100);
+    text("Created By: Obear", 770, 690)
     
     image(pick, xImage, yImage);
     xImage += speedX;
@@ -58,7 +62,6 @@ function draw()
         xImage2 = 0;
     }
     image(pick3, xImage3, yImage3);
-    
 
 // Check for collision and display "Ouch!!!" text
     if (checkCollision(xImage, yImage, 100, 100, xImage2, yImage2, 100, 100))
