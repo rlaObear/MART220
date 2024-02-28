@@ -27,7 +27,7 @@ class myImage {
             push();
             // Scale -1, 1 means reverse the x axis, keep y the same.
             scale(-1, 1);
-            // Because the x-axis is reversed, we need to draw at different x position.
+            // x-axis is reversed
             image(this.characterImage, -this.x - this.w / 2, this.y);
             pop();
         }
