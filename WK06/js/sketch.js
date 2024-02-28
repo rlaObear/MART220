@@ -7,10 +7,10 @@ var idleStrings = [];
 var walkStrings = [];
 var idleArray = [];
 var walkArray = [];
+
 var objectToEat;
 var objectToDraw;
 var score = 0;
-
 function preload() {
     idleStrings = loadStrings("../textfiles/idle.txt");
     walkStrings = loadStrings("../textfiles/walk.txt");
@@ -32,6 +32,7 @@ function setup() {
     setInterval(changeTime, 100);
     setInterval(countDown, 1000);
 }
+// this runs continuously
 function draw() {
     background(120);
 
