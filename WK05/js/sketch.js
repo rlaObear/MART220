@@ -26,11 +26,10 @@ function setup() {
         walkArray.push(new myImage(walkStrings[k], 50, 200, 680, 472));
     }
 
-    objectToEat = new myImage("../images/dewdrop.png", 500, 200, 100, 100);
+    objectToEat = new myImage("../images/bounce.png", 500, 200, 100, 100);
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
 
     setInterval(changeTime, 100);
-    setInterval(countDown, 1000);
 }
 function draw() {
     background(120);
@@ -66,7 +65,6 @@ function draw() {
             if (objectToEat != null) {
                 if (walkArray[ii].checkCollision(objectToEat.x, objectToEat.y, objectToEat.w, objectToEat.h)) {
                     objectToEat = null;
-                    score++;
                 }
             }
 
@@ -82,7 +80,7 @@ function draw() {
     fill(100, 252, 169);
     textSize(24);
     textFont(myFont);
-    text("Score: " + score, 400, 50);
+    
 
     fill(100, 252, 169);
     textSize(25);
@@ -106,6 +104,5 @@ function countDown() {
 
 function createANewFoodItem()
 {
-    console.log("HI");
-    objectToEat = new myImage("../images/dewdrop.png", random(50, width-100), random(50,height-100), 100, 100);
+    objectToEat = new myImage("../images/bounce.png", random(50, width-100), random(50,height-100), 100, 100);
 }
