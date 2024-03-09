@@ -1,9 +1,10 @@
-class myImage {
+class myFood {
 
     // constructor
     constructor(myFileName, x, y, w, h) {
 
         this.characterImage = loadImage(myFileName);
+        this.myImageObject
         this.x = x;
         this.y = y;
         this.w = w;

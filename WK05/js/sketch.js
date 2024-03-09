@@ -30,6 +30,7 @@ function setup() {
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
 
     setInterval(changeTime, 100);
+    setInterval(countDown, 1000);
 }
 function draw() {
     background(120);
@@ -80,6 +81,7 @@ function draw() {
     fill(100, 252, 169);
     textSize(24);
     textFont(myFont);
+    text("Score: " + score, 400, 50);
     
 
     fill(100, 252, 169);
