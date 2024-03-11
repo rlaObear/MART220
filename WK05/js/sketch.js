@@ -26,7 +26,7 @@ function setup() {
         walkArray.push(new myImage(walkStrings[k], 50, 200, 680, 472));
     }
 
-    objectToEat = new myImage("../images/bounce.png", 500, 200, 100, 100);
+    objectToEat = new myImage("../images/orchid.png", 500, 200, 100, 100);
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
 
     setInterval(changeTime, 100);
