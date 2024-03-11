@@ -27,6 +27,7 @@ function setup() {
     }
 
     objectToEat = new myImage("../images/orchid.png", 500, 200, 100, 100);
+    
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
 
     setInterval(changeTime, 100);
@@ -54,7 +55,6 @@ function draw() {
             xImage += 1;
             flipX = false;
         }
-
         for (var ii = 0; ii < idleArray.length; ii++) {
             idleArray[ii].updateX(xImage);
             idleArray[ii].updateFlip(flipX);
@@ -86,7 +86,7 @@ function draw() {
 
     fill(100, 252, 169);
     textSize(25);
-    text(myTime + " seconds", 50, 50);
+    text(myTime + "Seconds", 50, 50);
 }
 
 function changeTime() {
@@ -106,5 +106,5 @@ function countDown() {
 
 function createANewFoodItem()
 {
-    objectToEat = new myImage("../images/bounce.png", random(50, width-100), random(50,height-100), 100, 100);
+    objectToEat = new myImage("../images/orchid.png", random(50, width-100), random(50,height-100), 100, 100);
 }
