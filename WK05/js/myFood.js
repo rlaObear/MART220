@@ -14,26 +14,10 @@ class myFood {
     // properties
 
     // functions
+    draw(){image(this.characterImage, this.x, this.y,)}
+    
     updateX(x) {
         this.x = x;
-    }
-
-    updateFlip(flipX) {
-        this.flipX = flipX;
-    }
-    draw() {
-        this.characterImage.resize(this.w/2, this.h/2);
-        if (this.flipX) {
-            push();
-            scale(-1, 1);
-            image(this.characterImage, -this.x - this.w / 2, this.y);
-            pop();
-        }
-        else {
-            image(this.characterImage, this.x, this.y);
-
-        }
-
     }
 
     checkCollision(x2, y2, w2, h2) {

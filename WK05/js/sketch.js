@@ -26,7 +26,7 @@ function setup() {
         walkArray.push(new myImage(walkStrings[k], 50, 200, 680, 472));
     }
 
-    objectToEat = new myImage("../images/orchid.png", 500, 200, 100, 100);
+    objectToEat = new myFood("../images/orchid.png", 500, 200, 100, 100);
     
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
 
@@ -106,5 +106,5 @@ function countDown() {
 
 function createANewFoodItem()
 {
-    objectToEat = new myImage("../images/orchid.png", random(50, width-100), random(50,height-100), 100, 100);
+    objectToEat = new myFood("../images/orchid.png", random(50, width-100), random(50,height-100), 100, 100);
 }
