@@ -17,7 +17,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(600, 600);
+    createCanvas(800, 600);
 
     for (let k = 0; k < idleStrings.length; k++) {
         idleArray.push(new myImage(idleStrings[k], 50, 200, 680, 472));
@@ -27,6 +27,7 @@ function setup() {
     }
 
     objectToEat = new myFood("../images/orchid.png", 500, 200, 100, 100);
+
     
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
 
@@ -34,7 +35,7 @@ function setup() {
     setInterval(countDown, 1000);
 }
 function draw() {
-    background(120);
+    background(120,190,130);
 
     if (objectToEat != null) {
         objectToEat.draw();
@@ -86,7 +87,7 @@ function draw() {
 
     fill(100, 252, 169);
     textSize(25);
-    text(myTime + "Seconds", 50, 50);
+    text(myTime + "..Seconds", 50, 50);
 }
 
 function changeTime() {
