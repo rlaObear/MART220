@@ -16,6 +16,7 @@ class myFood {
     // functions
     draw(){image(this.characterImage, this.x, this.y,)}
     
+    
     updateX(x) {
         this.x = x;
     }

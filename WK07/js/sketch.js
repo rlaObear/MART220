@@ -1,6 +1,6 @@
 var xImage = 50, yImage = 200;
 var myFont;
-var myTime = 10;
+var myClock = 10;
 var i = 0;
 var flipX = false;
 var idleStrings = [];
@@ -11,9 +11,12 @@ var objectToEat;
 var objectToDraw;
 var score = 0;
 
+var mySound;
+
 function preload() {
     idleStrings = loadStrings("../textfiles/idle.txt");
     walkStrings = loadStrings("../textfiles/walk.txt");
+    
 }
 
 function setup() {
@@ -67,6 +70,7 @@ function draw() {
             if (objectToEat != null) {
                 if (walkArray[ii].checkCollision(objectToEat.x, objectToEat.y, objectToEat.w, objectToEat.h)) {
                     objectToEat = null;
+                    score++;
                 }
             }
 
@@ -87,7 +91,7 @@ function draw() {
 
     fill(100, 252, 169);
     textSize(25);
-    text(myTime + "..Seconds", 50, 50);
+    text(myClock + "..Seconds", 50, 50);
 }
 
 function changeTime() {
@@ -98,9 +102,9 @@ function changeTime() {
 }
 
 function countDown() {
-    myTime--;
-    if (myTime < 0) {
-        myTime = 10;
+    myClock--;
+    if (myClock < 0) {
+        myClock = 10;
         createANewFoodItem();
     }
 }
