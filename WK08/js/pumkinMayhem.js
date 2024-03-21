@@ -113,5 +113,5 @@ function countDown() {
 
 function createANewFoodItem()
 {
-    objectToEat = new targetFood.js("../images/orchid.png", random(50, width-100), random(50,height-100), 100, 100);
+    objectToEat = new targetFood.js("../images/charAnimation/Thunder.png", random(50, width-100), random(50,height-100), 100, 100);
 }

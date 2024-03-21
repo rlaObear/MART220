@@ -1,4 +1,4 @@
-class myImage {
+class charAnimation {
 
     // constructor
     constructor(myFileName, x, y, w, h) {
