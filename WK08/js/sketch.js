@@ -6,23 +6,26 @@ var i = 0;
 var flipX = false;
 var idleArray = [];
 var walkArray = [];
+var deadArray = [];
 var objectToEat;
+var objectToAvoid;
 var score = 0;
-var gameDuration = 60;
+var gameDuration = 40;
 var gameEndTime;
 var gameEnded = false;
 var backgroundSound;
 var biteSound;
+var objectToDraw 
 
 
 function preload() {
     loadStrings("textfiles/idle.txt", preloadIdle);
     loadStrings("textfiles/walk.txt", preloadWalk);
+    loadStrings("textfiles/dead.txt", preloadDead);
     backgroundSound = loadSound("../sound/background.mp3");
     biteSound = loadSound("../sound/biteSound.wav");
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
 }
-
 function preloadIdle(data) {
     for (var k = 0; k < data.length; k++) {
         idleArray.push(new myImage(data[k], xImage, yImage, 680, 472));
@@ -34,10 +37,16 @@ function preloadWalk(data) {
         walkArray.push(new myImage(data[k], xImage, yImage, 680, 472));
     }
 }
+function preloadDead(data) {
+    for (var k = 0; k < data.length; k++) {
+        deadArray.push(new myImage(data[k], xImage, yImage, 680, 472));
+    }
+}
 
 function setup() {
     createCanvas(800, 600);
     objectToEat = new myFood("images/orchid.png", 500, 200, 100, 100);
+    objectToAvoid = new myFood("images/Thunder.png", 300, 200, 100, 100);
     setInterval(changeTime, 100);
     setInterval(countDown, 1000);
     gameEndTime = millis() + gameDuration * 1000;
@@ -46,15 +55,46 @@ function setup() {
 function draw() {
     background(208, 249, 247);
 
-    if (objectToEat) {
+    if (objectToEat != null) {
         objectToEat.draw();
+    }
+    if (objectToAvoid != null) {
+        objectToAvoid.draw();
     }
 
     handleKeyPress();
 
     if (!gameEnded) {
-        var objectToDraw = keyIsPressed ? walkArray : idleArray;
+        objectToDraw = keyIsPressed ? walkArray : idleArray;
         objectToDraw[i].draw();
+
+        fill(225, 33, 184 );
+        textSize(24);
+        textFont(myFont);
+        text("Score: " + score, 400, 50);
+
+        fill(225, 33, 184 );
+        textSize(25);
+        text(myClock + " Seconds", 50, 50);
+
+        var remainingTime = max(0, (gameEndTime - millis()) / 1000);
+
+        if (remainingTime <= 0) {
+            gameEnded = true;
+        } else {
+            textSize(20);
+            fill(225, 33, 184 );
+            text("Time Left: " + ceil(remainingTime), 10, 20);
+        }
+    } else { 
+        objectToDraw = deadArray;
+        objectToDraw [i].draw();
+        displayGameOver();
+
+    }
+    /*if (!gameEnded) {
+        var objectToDraw = keyIsPressed ? walkArray : idleArray;
+        objectToAvoid[i].draw();
 
         fill(225, 33, 184 );
         textSize(24);
@@ -76,7 +116,7 @@ function draw() {
         }
     } else {
         displayGameOver();
-    }
+    }*/
 }
 
 function handleKeyPress() {
@@ -112,11 +152,9 @@ function updateImagesPosition() {
         walkArray[ii].y = yImage;
 
         if (objectToEat) {
-            if (objectToEat.checkCollision(idleArray[ii].x, idleArray[ii].y, idleArray[ii].w, idleArray[ii].h)) {
+            if (walkArray[ii].checkCollision(objectToEat.x, objectToEat.y, objectToEat.w, objectToEat.h)) {
                 objectToEat = null;
-                biteSound.play ()
                 score++;
-                
             }
         }
     }
@@ -136,6 +174,9 @@ function countDown() {
 
 function createANewFoodItem() {
     objectToEat = new myFood("images/orchid.png", random(50, width - 100), random(50, height - 100), 100, 100);
+}
+function yourDead(){
+displayDeadArray;
 }
 
 function displayGameOver() {

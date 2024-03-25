@@ -8,27 +8,30 @@ class myFood {
         this.h = h;
         this.flipX = false; 
     }
-    
-    // draw method
+    // properties
+
+    // function
     draw() {
+        this.characterImage.resize(this.w/3, this.h/3);
+        if (this.flipX) {
+            push();
+            scale(-1, 1);
+            image(this.characterImage, -this.x - this.w / 3, this.y);
+            pop();
+        }
+        else {
+            image(this.characterImage, this.x, this.y);
 
-        image(this.characterImage, this.x, this.y, this.w, this.h);
+        }
+
     }
-
+    
     updateX(x) {
         this.x = x;
     }
 
     checkCollision(x3, y3, w3, h3) {
-        if (
-            this.x < x3 + w3 &&
-            this.x + this.w > x3 &&
-            this.y < y3 + h3 &&
-            this.y + this.h > y3
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+        return collideRectRect(this.x - this.w/2 , this.y - h2/2, this.w, this.h, x2,y2,w2,h2);
+
     }
 }
