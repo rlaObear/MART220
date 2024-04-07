@@ -16,6 +16,8 @@ var gameEnded = false;
 var backgroundSound;
 var biteSound;
 var objectToDraw 
+let particles;
+let button;
 
 
 function preload() {
@@ -50,10 +52,33 @@ function setup() {
     setInterval(changeTime, 100);
     setInterval(countDown, 1000);
     gameEndTime = millis() + gameDuration * 1000;
+    button = createButton('New');
+    button.mousePressed(makeParticles);
+    makeParticles();
 }
+function makeParticles() {
+  if (particles) freeGeometry(particles);
+
+  particles = buildGeometry(() => {
+    for (let i = 0; i < 60; i++) {
+      push();
+      translate(
+        randomGaussian(0, 20),
+        randomGaussian(0, 20),
+        randomGaussian(0, 20)
+      );
+      sphere(5);
+      pop();
+    }
+  });
 
 function draw() {
     background(208, 249, 247);
+    //background(255);
+    noStroke();
+    lights();
+    orbitControl();
+    model(particles);
 
     if (objectToEat != null) {
         objectToEat.draw();
