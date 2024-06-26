@@ -210,8 +210,5 @@ function displayGameOver() {
     textSize(30);
     text("Final Score: " + score, 300, 250);
 }
-function mousePressed() 
-
-
-    
-    backgroundSound.loop();
+function mousePressed()
+}
