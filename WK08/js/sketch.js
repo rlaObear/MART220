@@ -19,7 +19,6 @@ var objectToDraw
 let particles;
 let button;
 
-
 function preload() {
     loadStrings("textfiles/idle.txt", preloadIdle);
     loadStrings("textfiles/walk.txt", preloadWalk);
@@ -212,6 +211,7 @@ function displayGameOver() {
     text("Final Score: " + score, 300, 250);
 }
 function mousePressed() 
-{
-    backgroundSound.loop();
 }
+
+    
+    backgroundSound.loop();

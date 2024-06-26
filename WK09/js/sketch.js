@@ -1,99 +1,73 @@
+let idlePaths = [];
+let walkPaths = [];
+let myAnimation;
+let orchidImage;
+let thunderImage;
 
-var idlePaths = [];
-var myAnimation;
-var myWalkAnimation;
-var walkPaths = [];
-let catImage;
-let brainImage;
 function preload() {
    idlePaths = loadStrings("./images/idle/idle.txt");
    walkPaths = loadStrings("./images/walk/walk.txt");
-   
+   // Commented out other loadStrings as they overwrite walkPaths
+   // walkPaths = loadStrings("./images/dead/deadk.txt");
+   // walkPaths = loadStrings("./images/run/run.txt");
+   // walkPaths = loadStrings("./images/slide/slide.txt");
 }
 
 function setup() {
-  createCanvas(800,600);
-  myAnimation = new animationImage( 200, 200, 150, 150);
+  createCanvas(800, 600);
+  myAnimation = new AnimationImage(200, 200, 150, 150);
   myAnimation.myLoadAnimation('idle', idlePaths);
   myAnimation.myLoadAnimation('walk', walkPaths);
   
+  orchidImage = new Sprite(450, 200, 100, 100, 'static');
+  orchidImage.img = loadImage("./images/orchid.jpg"); // Use loadImage for loading images
+  orchidImage.scale = 0.05;
+  orchidImage.diameter = 100;
 
-  //compact way to add an image
-  catImage = new Sprite(450, 200,100,100, 'static');
-  catImage.img = "./images/cat.jpg";
-  catImage.scale = 0.05;
-  catImage.diameter = 100;
-
-
-  //compact way to add an image
-  brainImage = new Sprite(250, 400,100,100, 'static');
-  brainImage.img = "./images/brain.jpeg";
-  brainImage.scale = 0.05;
-  brainImage.diameter = 50;
-
+  thunderImage = new Sprite(250, 400, 100, 100, 'static');
+  thunderImage.img = loadImage("./images/thunder.jpeg"); // Use loadImage for loading images
+  thunderImage.scale = 0.05;
+  thunderImage.diameter = 50;
 }
 
-// display all the frames using the draw function as a loop
-function draw() 
-{
-
+function draw() {
     background(120);  
     
-    if(kb.pressing('d'))
-    {
-        if(myAnimation.isColliding(catImage))
-        {
+    if (keyIsDown(68)) { // 68 is ASCII for 'd'
+        if (myAnimation.isColliding(orchidImage)) {
             myAnimation.drawAnimation('idle');
             myAnimation.updatePosition('idle');
-            
         }  
-        else if(myAnimation.isColliding(brainImage))
-        {
-            brainImage.remove();
-            
+        else if (myAnimation.isColliding(thunderImage)) {
+            thunderImage.remove();
         }  
         myAnimation.updatePosition('forward');
         myAnimation.drawAnimation('walk');    
           
-    }
-    else if(kb.pressing('a'))
-    {
-        if(myAnimation.isColliding(catImage))
-        {
+    } else if (keyIsDown(65)) { // 65 is ASCII for 'a'
+        if (myAnimation.isColliding(orchidImage)) {
             myAnimation.drawAnimation('idle');
             myAnimation.updatePosition('idle');  
         }  
         myAnimation.updatePosition('reverse');
         myAnimation.drawAnimation('walk');        
-    }
-    else if(kb.pressing('w'))
-    {
-        if(myAnimation.isColliding(catImage))
-        {
+    } else if (keyIsDown(87)) { // 87 is ASCII for 'w'
+        if (myAnimation.isColliding(orchidImage)) {
             myAnimation.drawAnimation('idle');
             myAnimation.updatePosition('idle');
-            
         }  
         myAnimation.updatePosition('up');
         myAnimation.drawAnimation('walk'); 
-
-    }
-    else if(kb.pressing('s'))
-    {
-        if(myAnimation.isColliding(catImage))
-        {
+    } else if (keyIsDown(83)) { // 83 is ASCII for 's'
+        if (myAnimation.isColliding(orchidImage)) {
             myAnimation.drawAnimation('idle');
             myAnimation.updatePosition('idle');
-            
         }  
         myAnimation.updatePosition('down');   
         myAnimation.drawAnimation('walk');        
-    }
-    else
-    {
+    } else {
         myAnimation.drawAnimation('idle');
     } 
     
-    brainImage.debug = mouseIsPressed;
-
+    thunderImage.debug = mouseIsPressed;
 }
