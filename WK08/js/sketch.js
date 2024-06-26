@@ -211,7 +211,7 @@ function displayGameOver() {
     text("Final Score: " + score, 300, 250);
 }
 function mousePressed() 
-}
+
 
     
     backgroundSound.loop();
