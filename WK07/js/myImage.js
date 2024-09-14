@@ -21,7 +21,7 @@ class myImage {
         this.flipX = flipX;
     }
     draw() {
-        this.characterImage.resize(this.w/3, this.h/2);
+        this.characterImage.resize(this.w/4, this.h/3);
         if (this.flipX) {
             push();
             scale(-1, 1);

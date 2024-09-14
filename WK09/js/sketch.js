@@ -7,10 +7,6 @@ let thunderImage;
 function preload() {
    idlePaths = loadStrings("./images/idle/idle.txt");
    walkPaths = loadStrings("./images/walk/walk.txt");
-   // Commented out other loadStrings as they overwrite walkPaths
-   // walkPaths = loadStrings("./images/dead/deadk.txt");
-   // walkPaths = loadStrings("./images/run/run.txt");
-   // walkPaths = loadStrings("./images/slide/slide.txt");
 }
 
 function setup() {

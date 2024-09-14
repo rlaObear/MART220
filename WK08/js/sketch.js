@@ -116,7 +116,7 @@ function draw() {
         displayGameOver();
 
     }
-    /*if (!gameEnded) {
+    if (!gameEnded) {
         var objectToDraw = keyIsPressed ? walkArray : idleArray;
         objectToAvoid[i].draw();
 
@@ -140,7 +140,8 @@ function draw() {
         }
     } else {
         displayGameOver();
-    }*/
+    }
+
 }
 
 function handleKeyPress() {
@@ -210,5 +211,4 @@ function displayGameOver() {
     textSize(30);
     text("Final Score: " + score, 300, 250);
 }
-function mousePressed()
 }
