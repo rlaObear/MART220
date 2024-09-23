@@ -20,6 +20,8 @@ var runningfeetSound;
 var gameOver = false;
 var resetGame;
 
+//make it load
+
 function preload() {
     //Sprite Images
     attackPaths = loadStrings("./images/attack/attack.txt");
