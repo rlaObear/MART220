@@ -2,6 +2,8 @@ var xImage = 50;
 var yImage = 200;
 var myFont;
 var myClock = 10;
+var changeTime = 100;
+var countDown = 1000
 var i = 0;
 var flipX = false;
 var idleArray = [];
