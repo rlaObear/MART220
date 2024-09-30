@@ -1,4 +1,4 @@
-class BadCollectable {
+class Collectable {
 
     constructor(x, y, w, h, image) {
         this.x = x;
@@ -11,7 +11,7 @@ class BadCollectable {
         this.sprite.addImage(this.image);
         this.sprite.width = this.w;
         this.sprite.height = this.h;
-        this.sprite.scale = .05;
+        this.sprite.scale = .25; 
     }
     draw() {
         if (!this.isCollected) {
@@ -25,5 +25,8 @@ class BadCollectable {
             return true; 
         }
         return false;
+    }
+     getImage(){
+        return this.image;
     }
 }

@@ -26,4 +26,7 @@ class Collectable {
         }
         return false;
     }
+     getImage(){
+        return this.image;
+    }
 }

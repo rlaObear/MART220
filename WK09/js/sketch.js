@@ -19,6 +19,8 @@ var backgroundSound;
 var runningfeetSound;
 var gameOver = false;
 var resetGame;
+var currentGoodCollectable;
+var currentBadCollectable;
 
 function preload() {
     //Sprite Images
@@ -148,7 +150,7 @@ function draw() {
         if (collectable.checkCollision(myAnimation.getCurrentAnimation())) {
             score += 1; //Adds a point when collectable is collected
             console.log("Score: " + score);
-            collectables.splice(i, 1); 
+            currentGoodCollectable=collectables.splice(i, 1); 
             createNewCollectible();// how do I set a timer so I can have these reappear in 3 seconds, not immeaditly?
         }
     }
@@ -157,7 +159,7 @@ function draw() {
         if (BadCollectable.checkCollision(myAnimation.getCurrentAnimation())) {
             health -= 30; // Reduce health when a bad collectible is collected
             console.log("Health: " + health);
-            BadCollectables.splice(i, 1); 
+            currentBadCollectable=collectables.splice(i, 1); 
             createNewBadCollectible();// how do I set a timer so I can have these reappear in 3 seconds, not immeaditly?
         }
         }
@@ -171,6 +173,7 @@ function draw() {
         health = 100;
         timerValue = 60;
         gameOver = false;
+        clear();
         
         // Clear and respawn collectables and bad collectables
         collectables = [];
@@ -300,13 +303,14 @@ function draw() {
     
     
     function createNewCollectible(){
-        collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, daggerImage));
-        collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, starImage));
-        collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, knifeImage));
+        collectables.push(new Collectable(random(0, width), random(0, height), 100, 100,currentGoodCollectable[0].getImage()));
+        //collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, daggerImage));
+       // collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, starImage));
+        //collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, knifeImage));
     }
-    function createNewBadCollectible(){
-        BadCollectables.push(new BadCollectable(random(0, width), random(0, height), 100, 100, walkingBombImage));
-        BadCollectables.push(new BadCollectable(random(0, width), random(0, height), 100, 100, floatingBombImage));
-        BadCollectables.push(new BadCollectable(random(0, width), random(0, height), 100, 100, batBombImage));
+    //function createNewBadCollectible(){
+        //collectables.push(new Collectable(random(0, width), random(0, height), 100, 100,currentBadCollectable[0].getImage()));
+        //BadCollectables.push(new BadCollectable(random(0, width), random(0, height), 100, 100, walkingBombImage));
+        //BadCollectables.push(new BadCollectable(random(0, width), random(0, height), 100, 100, floatingBombImage));
+        //BadCollectables.push(new BadCollectable(random(0, width), random(0, height), 100, 100, batBombImage));
     }
-}
