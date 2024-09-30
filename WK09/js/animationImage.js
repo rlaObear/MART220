@@ -8,79 +8,65 @@ class animationImage {
         this.currentAnimation;
         this.createAnimation();
         this.direction = "";
-        this.hasCollided = false;
-    }
-
-    getX() {
-        return this.x;
-    }
-
-    setX(x) {
-        this.x = x;
-    }
-
-    setCurrentFrameCount(currentFrameCount) {
-        this.currentFrameCount = currentFrameCount;
     }
 
     createAnimation() {
-        this.currentAnimation = new Sprite(this.x, this.y);
-        this.currentAnimation.rotation = 0;
-        this.currentAnimation.frameDelay=500;
+        this.currentAnimation = createSprite(this.x, this.y);
     }
 
-    myLoadAnimation(animationType, fileNames) {
+    getCurrentAnimation() {
+        return this.currentAnimation;
+    }
+
+    loadAnimation(animationType, fileNames) {
         this.currentAnimation.addAnimation(animationType, fileNames[0], fileNames[fileNames.length - 1]);
-        // set the hit box
-        this.currentAnimation.width = 200;
+        this.currentAnimation.width = 300;
         this.currentAnimation.height = 150;
     }
 
-
     drawAnimation(animationType) {
-         
-        this.currentAnimation.scale = .5;
+        this.currentAnimation.frameDelay = 5;
+        this.currentAnimation.scale = .15;
         this.currentAnimation.changeAnimation(animationType);
-        this.currentAnimation.rotation = 0;
-
-        if(this.hasCollided)
-        {
-            this.currentAnimation.speed = 0;
-            this.currentAnimation.velocity.x = 0;
-            this.currentAnimation.velocity.y = 0;
-        }
-        else
-        {
-            this.currentAnimation.speed = 2;
-        }
         
+        // Handle movement based on direction and animation type
         if (animationType == 'walk' && this.direction == 'forward') {
             this.currentAnimation.direction = 0;
             this.currentAnimation.mirror.x = false;
-        }
-        else if (animationType == 'walk' && this.direction == 'reverse') {
+            this.currentAnimation.speed = 1;
+        } else if (animationType == 'walk' && this.direction == 'reverse') {
             this.currentAnimation.mirror.x = true;
             this.currentAnimation.direction = 180;
-        }
-        else if (animationType == 'walk' && this.direction == 'up') {
-            this.currentAnimation.direction = 270;
-        }
-        else if (animationType == 'walk' && this.direction == 'down') {
-            this.currentAnimation.direction = 90;
-        }
-
-        else {
+            this.currentAnimation.speed = 1;
+        } else {
             this.currentAnimation.velocity.x = 0;
-            this.currentAnimation.velocity.y = 0;  
+            this.currentAnimation.velocity.y = 0;
+            this.currentAnimation.rotation = 0;
         }
     }
 
     updatePosition(direction) {
-        this.direction = direction;  
+        this.direction = direction;
+        if (direction === 'climb') {
+            if (kb.pressing('w')) {
+                this.currentAnimation.position.y -= 5; // Move up
+            } else if (kb.pressing('s')) {
+                this.currentAnimation.position.y += 5; // Move down
+            }
+        } else if (direction === 'forward') {
+            this.currentAnimation.position.x += 5; // Move forward
+        } else if (direction === 'reverse') {
+            this.currentAnimation.position.x -= 5; // Move backward
+        }
     }
 
     isColliding(myImage) {
-        this.hasCollided =  this.currentAnimation.collide(myImage);
-        return this.hasCollided;
+        return this.currentAnimation.collide(myImage);
+    }
+
+    // Add setPosition method
+    setPosition(x, y) {
+        this.currentAnimation.position.x = x;
+        this.currentAnimation.position.y = y;
     }
 }

@@ -1,0 +1,10 @@
+./images/climb/climb_0.png
+./images/climb/climb_1.png
+./images/climb/climb_2.png
+./images/climb/climb_3.png
+./images/climb/climb_4.png
+./images/climb/climb_5.png
+./images/climb/climb_6.png
+./images/climb/climb_7.png
+./images/climb/climb_8.png
+./images/climb/climb_9.png
