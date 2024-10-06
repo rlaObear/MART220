@@ -1,16 +1,22 @@
-var attackPaths = [],climbPaths = [] ,deadPaths = [], idlePaths = [], walkPaths = []
-var particles = [], collectables = [], BadCollectables = [];
+var attackPaths = [], climbPaths = [], deadPaths = [], idlePaths = [], walkPaths = [];
+var particles = [];
+var collectables = [];
+var BadCollectables = [];
 var orchidImage,thunderImage, clickImage;
 var treeImage1,treeImage2,treeImage3;
 var daggerImage, starImage, knifeImage;
 var walkingBombImage, floatingBombImage, batBombImage;
-var backgroundSound, runningfeetSound, biteSound, bombSound;
 var myAnimation;
 var myFont;
 var mySound;
-var health = 100, timerValue = 60, score = 0, gameOver = false;
+var health = 100;
+var timerValue = 60;
+var score = 0;
+var backgroundSound, runningfeetSound, biteSound, bombSound;
+var gameOver = false;
 var resetGame;
-var currentGoodCollectable,currentBadCollectable;
+var currentGoodCollectable;
+var currentBadCollectable;
 var keyPressed;
 
 function preload() {
