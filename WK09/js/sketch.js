@@ -162,10 +162,14 @@ function draw() {
     //Handles collectable and BadCollectable draw and collision, Score and Health tracking.
     for (let i = collectables.length - 1; i >= 0; i--) {
         let collectable = collectables[i];
-        collectable.draw(); // continues to draw collectable if not collected
+        collectable.draw(); // continues to draw/show collectable if not collected
         if (collectable.checkCollision(myAnimation.getCurrentAnimation())) {
             score += 1; //Adds a point when collectable is collected
             console.log("Score: " + score);
+                    // Play bite sound when a collectible is collected
+        if (!biteSound.isPlaying()) {
+            biteSound.play();
+        }
             currentGoodCollectable=collectables.splice(i, 1); 
             createNewCollectible();
             
@@ -173,9 +177,9 @@ function draw() {
     }
     for (let i = BadCollectables.length - 1; i >= 0; i--) {
         let badCollectable = BadCollectables[i];
-        badCollectable.draw(); // continues to draw badCollectable if not collected
+        badCollectable.draw(); // continues to draw/show badCollectable if not collected
         if (badCollectable.checkCollision(myAnimation.getCurrentAnimation())) {
-            health -= 30; // Reduce health when a bad collectible is collected
+            health -= 30; // Reduces health when a bad collectible is collected
             console.log("Health: " + health);
             currentBadCollectable = BadCollectables.splice(i, 1); 
             createNewBadCollectible();
