@@ -127,6 +127,7 @@ function draw() {
     if (timerValue < 10) {
         text('0:0' + timerValue, width / 2, height / 2);
     }
+    
 
     if (gameOver) {
         // Displays game over screen
@@ -186,6 +187,7 @@ function draw() {
             }
     //Charactor movement and checking with collision of badcollectable items
     function handleAnimation() {
+        
     function keyIsPressed() {
         }
         if (kb.pressing('d') || kb.pressing('a') || kb.pressing('w') || kb.pressing('s')) {
