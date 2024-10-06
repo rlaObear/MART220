@@ -201,6 +201,8 @@ function draw() {
         }
         if (kb.pressing('d')) {
             myAnimation.updatePosition('forward');
+            myAnimation.currentAnimation.position.x = constrain(myAnimation.currentAnimation.position.x, 0, width);
+            myAnimation.currentAnimation.position.y = constrain(myAnimation.currentAnimation.position.y, 0, height);
             // function checks for collectibles collision
             if (!handleCollision(orchidImage) 
             && !handleCollision(thunderImage) 
@@ -214,6 +216,8 @@ function draw() {
         } 
         else if (kb.pressing('a')) {
             myAnimation.updatePosition('reverse');
+            myAnimation.currentAnimation.position.x = constrain(myAnimation.currentAnimation.position.x, 0, width);
+            myAnimation.currentAnimation.position.y = constrain(myAnimation.currentAnimation.position.y, 0, height);
             // function checks for collectibles collision
             if (!handleCollision(orchidImage) 
             && !handleCollision(thunderImage) 
@@ -227,10 +231,14 @@ function draw() {
         } 
         else if (kb.pressing('w')) { 
             myAnimation.updatePosition('climb');
+            myAnimation.currentAnimation.position.x = constrain(myAnimation.currentAnimation.position.x, 0, width);
+            myAnimation.currentAnimation.position.y = constrain(myAnimation.currentAnimation.position.y, 0, height);
             myAnimation.drawAnimation('climb');
         }
          else if (kb.pressing('s')) { 
             myAnimation.updatePosition('climb');
+            myAnimation.currentAnimation.position.x = constrain(myAnimation.currentAnimation.position.x, 0, width);
+            myAnimation.currentAnimation.position.y = constrain(myAnimation.currentAnimation.position.y, 0, height);
             myAnimation.drawAnimation('climb');
         } 
         else if (kb.pressing('x')) {
