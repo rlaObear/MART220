@@ -16,7 +16,7 @@ var mySound;
 var health = 100;
 var timerValue = 60;
 var score = 0;
-var backgroundSound;runningfeetSound; biteSound;
+var backgroundSound, runningfeetSound, biteSound;
 var gameOver = false;
 var resetGame;
 var currentGoodCollectable;
@@ -48,6 +48,7 @@ function preload() {
     runningfeetSound = loadSound("../sound/runningfeet.wav");
     //Font
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
+    
 }
 function timeIt() {
     if (timerValue > 0) {
@@ -59,7 +60,8 @@ function timeIt() {
 function keyIsPressed() {
     if (backgroundSound.isLoaded()) {
         backgroundSound.loop();
-        backgroundSound.setVolume (.03)
+        backgroundSound.setVolume (.02)
+        userStartAudio();
     }
 }
 
@@ -132,9 +134,7 @@ function draw() {
     if (timerValue < 10) {
         text('0:0' + timerValue, width / 2, height / 2);
     }
-    //I get an error code "handle animation funtion" if I combine these with the timerValue.
-    //if (gameOver || timerValue == 0) {
-    //Timer, Health, and Game Over handeling.
+
     if (gameOver) {
         // Displays game over screen
         fill(255, 0, 0);
@@ -186,6 +186,14 @@ function draw() {
         }
     //Charactor movement and checking with collision of badcollectable items
     function handleAnimation() {
+        if (kb.pressing('d') || kb.pressing('a') || kb.pressing('w') || kb.pressing('s')) {
+            if (!runningfeetSound.isPlaying()) {
+                runningfeetSound.loop();
+            }
+        } else {
+            runningfeetSound.stop();
+        }
+        
         if (keyPressed && key === 'r') {
             resetGame();
         }
