@@ -1,26 +1,16 @@
-var attackPaths = [];
-var climbPaths = [];
-var deadPaths = [];
-var idlePaths = [];
-var walkPaths = [];
-var particles = [];
-var collectables = [];
-var BadCollectables = [];
+var attackPaths = [],climbPaths = [] ,deadPaths = [], idlePaths = [], walkPaths = []
+var particles = [], collectables = [], BadCollectables = [];
 var orchidImage,thunderImage, clickImage;
 var treeImage1,treeImage2,treeImage3;
 var daggerImage, starImage, knifeImage;
 var walkingBombImage, floatingBombImage, batBombImage;
+var backgroundSound, runningfeetSound, biteSound, bombSound;
 var myAnimation;
 var myFont;
 var mySound;
-var health = 100;
-var timerValue = 60;
-var score = 0;
-var backgroundSound, runningfeetSound, biteSound;
-var gameOver = false;
+var health = 100, timerValue = 60, score = 0, gameOver = false;
 var resetGame;
-var currentGoodCollectable;
-var currentBadCollectable;
+var currentGoodCollectable,currentBadCollectable;
 var keyPressed;
 
 function preload() {
@@ -28,6 +18,7 @@ function preload() {
     backgroundSound = loadSound('./sound/background.mp3');
     runningfeetSound = loadSound('./sound/runningfeet.wav');
     biteSound = loadSound('./sound/bitesound.wav');
+    bombSound = loadSound('./sound/bombSound.mp3')
     //Sprite Images
     attackPaths = loadStrings("./images/attack/attack.txt");
     climbPaths = loadStrings("./images/climb/climb.txt");
@@ -60,7 +51,7 @@ function timeIt() {
 function keyIsPressed() {
     if (backgroundSound.isLoaded()) {
         backgroundSound.loop();
-        backgroundSound.setVolume (.02)
+        backgroundSound.setVolume (.01)
         userStartAudio();
     }
 }
@@ -181,6 +172,9 @@ function draw() {
         if (badCollectable.checkCollision(myAnimation.getCurrentAnimation())) {
             health -= 30; // Reduces health when a bad collectible is collected
             console.log("Health: " + health);
+            if (!bombSound.isPlaying()) {
+                bombSound.play();
+            }
             currentBadCollectable = BadCollectables.splice(i, 1); 
             createNewBadCollectible();
         }
@@ -190,6 +184,15 @@ function draw() {
         }
     //Charactor movement and checking with collision of badcollectable items
     function handleAnimation() {
+        function keyIsPressed() {
+    if (backgroundSound.isLoaded()) {
+        backgroundSound.loop(); // Ensures the background sound plays in a loop
+        userStartAudio(); // Needed to initiate sound in browsers due to user interaction restrictions
+        
+        // Adjust the volume of the background sound
+        backgroundSound.setVolume(0.03); // Set volume to 3% (can adjust this value to your preference)
+    }
+}
         if (kb.pressing('d') || kb.pressing('a') || kb.pressing('w') || kb.pressing('s')) {
             if (!runningfeetSound.isPlaying()) {
                 runningfeetSound.loop();
