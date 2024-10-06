@@ -117,7 +117,7 @@ function draw() {
     text("Nija Madness", 100, 690)
     text("Score: " + score, 800, 50);
     text("Health: " + health, 100, 50);
-    //are these in the right place?
+
     handleAnimation();
     handleParticles();
     //Displays time correctly i.e. 0:00
@@ -137,15 +137,15 @@ function draw() {
         text("Press R to Restart", width / 2, height / 2 + 30);
         return; // Stop further execution in draw
     }
-        // Win condition
-        if (score >= 10) {
-            fill(255, 0, 0); // Green text
-            textSize(50);
-            text("YOU WIN", width / 2, height / 2);
-            textSize(25);
-            text("Press R to Restart", width / 2, height / 2 + 30);
-            return; 
-        }
+     // Displays win screen
+    if (score >= 10) {
+        fill(255, 0, 0); // Green text
+        textSize(50);
+        text("YOU WIN", width / 2, height / 2);
+        textSize(25);
+        text("Press R to Restart", width / 2, height / 2 + 30);
+        return; 
+    }
     if (timerValue == 0) {
         text('game over', width / 2, height / 2 + 15);
         gameOver = true; // Set game over
@@ -188,11 +188,8 @@ function draw() {
     function handleAnimation() {
         function keyIsPressed() {
     if (backgroundSound.isLoaded()) {
-        backgroundSound.loop(); // Ensures the background sound plays in a loop
-        userStartAudio(); // Needed to initiate sound in browsers due to user interaction restrictions
-        
-        // Adjust the volume of the background sound
-        backgroundSound.setVolume(0.03); // Set volume to 3% (can adjust this value to your preference)
+        backgroundSound.loop(); 
+        userStartAudio(); 
     }
 }
         if (kb.pressing('d') || kb.pressing('a') || kb.pressing('w') || kb.pressing('s')) {
