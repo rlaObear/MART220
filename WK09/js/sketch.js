@@ -15,6 +15,7 @@ var resetGame;
 var currentGoodCollectable;
 var currentBadCollectable;
 var keyPressed;
+var handlecollectable
 
 function preload() {
     // Load sound files
@@ -55,17 +56,16 @@ function keyIsPressed() {
     }
 }
 
-
 function setup() {
     createCanvas(900, 700);
     textAlign(CENTER);
     setInterval(timeIt, 1000);
     
-        // Play background sound in a loop
-        if (backgroundSound.isLoaded()) {
-            backgroundSound.loop();
-            backgroundSound.setVolume(0.3); // Adjust volume to your preference
-        }
+    // Play background sound in a loop
+    if (backgroundSound.isLoaded()) {
+        backgroundSound.loop();
+        backgroundSound.setVolume(0.3); // Adjust volume to your preference
+    }
 
     
     //Collectables in random positions
@@ -98,13 +98,13 @@ function setup() {
    
     //immovable objects
     treeImage1 = createSprite(590, 170, 200, 200, 'static');
-    treeImage1.img = "./images/tree.png";
+    treeImage1.addImage(loadImage("./images/tree.png"));
     treeImage1.scale = 0.95;
     treeImage2 = createSprite(200, 400,200, 200, 'static');
-    treeImage2.img = "./images/tree.png";
+    treeImage2.addImage(loadImage("./images/tree.png"));
     treeImage2.scale = 0.95;
     treeImage3 = createSprite(800, 580,200, 200, 'static');
-    treeImage3.img = "./images/tree.png";
+    treeImage3.addImage(loadImage("./images/tree.png"));
     treeImage3.scale = 0.95;   
 }
 
@@ -160,9 +160,9 @@ function draw() {
             score += 1; //Adds a point when collectable is collected
             console.log("Score: " + score);
                     // Play bite sound when a collectible is collected
-        if (!biteSound.isPlaying()) {
-            biteSound.play();
-        }
+            if (!biteSound.isPlaying()) {
+                biteSound.play();
+            }
             currentGoodCollectable=collectables.splice(i, 1); 
             createNewCollectible();
             
@@ -180,18 +180,14 @@ function draw() {
             currentBadCollectable = BadCollectables.splice(i, 1); 
             createNewBadCollectible();
         }
-    }
-        if (health <= 0) {
-        gameOver = true; // Set game over state
         }
+            if (health <= 0) {
+            gameOver = true; // Set game over state
+            }
     //Charactor movement and checking with collision of badcollectable items
     function handleAnimation() {
-        function keyIsPressed() {
-    if (backgroundSound.isLoaded()) {
-        backgroundSound.loop(); 
-        userStartAudio(); 
-    }
-}
+    function keyIsPressed() {
+        }
         if (kb.pressing('d') || kb.pressing('a') || kb.pressing('w') || kb.pressing('s')) {
             if (!runningfeetSound.isPlaying()) {
                 runningfeetSound.loop();
@@ -303,8 +299,8 @@ function draw() {
         
         // Repopulate the arrays with new items in random positions
         for (let i = 0; i < 3; i++) {
-            createNewCollectible();  // Call the function to create good collectables
-            createNewBadCollectible();  // Call the function to create bad collectables
+            createNewCollectible();  // Call function to create good collectables
+            createNewBadCollectible();  // Call function to create bad collectables
         }
         
         // Reset player position
@@ -318,11 +314,8 @@ function draw() {
         //Timmer to delay respawn
         setTimeout(() => {
             collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, daggerImage));
-            collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, starImage));
-            collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, knifeImage));
         }, 3000);  
     }
-    
     
     function createNewBadCollectible() {
         setTimeout(() => {
