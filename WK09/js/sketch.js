@@ -12,17 +12,22 @@ var daggerImage, starImage, knifeImage;
 var walkingBombImage, floatingBombImage, batBombImage;
 var myAnimation;
 var myFont;
+var mySound;
 var health = 100;
 var timerValue = 60;
 var score = 0;
-var backgroundSound;
-var runningfeetSound;
+var backgroundSound;runningfeetSound; biteSound;
 var gameOver = false;
 var resetGame;
 var currentGoodCollectable;
 var currentBadCollectable;
+var keyPressed;
 
 function preload() {
+    // Load sound files
+    backgroundSound = loadSound('./sound/background.mp3');
+    runningfeetSound = loadSound('./sound/runningfeet.wav');
+    biteSound = loadSound('./sound/bitesound.wav');
     //Sprite Images
     attackPaths = loadStrings("./images/attack/attack.txt");
     climbPaths = loadStrings("./images/climb/climb.txt");
@@ -51,12 +56,23 @@ function timeIt() {
         timerValue = 0;
     }
 }
+function keyIsPressed() {
+    if (backgroundSound.isLoaded()) {
+        backgroundSound.loop();
+        backgroundSound.setVolume (.03)
+    }
+}
 
 function setup() {
     createCanvas(900, 700);
     textAlign(CENTER);
     setInterval(timeIt, 1000);
-
+        
+    // Play background sound (looping)
+    if (backgroundSound.isLoaded()) {
+        backgroundSound.loop(); // Will loop the background music
+    }
+    
     //Collectables in random positions
     collectables.push(new Collectable(random(50, width -50), random(50, height -50), 100, 100, daggerImage));
     collectables.push(new Collectable(random(50, width -50), random(50, height -50), 100, 100, starImage));
@@ -170,7 +186,7 @@ function draw() {
         }
     //Charactor movement and checking with collision of badcollectable items
     function handleAnimation() {
-        if (keyIsPressed && key === 'r') {
+        if (keyPressed && key === 'r') {
             resetGame();
         }
         if (kb.pressing('d')) {
@@ -235,10 +251,9 @@ function draw() {
         { let distance = dist(myAnimation.getCurrentAnimation().position.x, 
             myAnimation.getCurrentAnimation().position.y, 
             sprite.position.x, sprite.position.y);
-        if (distance < 200) 
+        if (distance < 75) 
         {createParticles(sprite.position.x, sprite.position.y);
-            health -= 1;
-        if (health <= 0) 
+            health += 1;
         {
             sprite.remove();
             sprite = null;
@@ -279,7 +294,7 @@ function draw() {
         }
         
         // Reset player position
-        myAnimation.currentAnimation.position.x = 200;  // Change this to the initial position of the player
+        myAnimation.currentAnimation.position.x = 200;  
         myAnimation.currentAnimation.position.y = 200;
         
         console.log("Game reset! Collectables and BadCollectables cleared and repopulated.");
@@ -289,8 +304,11 @@ function draw() {
         //Timmer to delay respawn
         setTimeout(() => {
             collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, daggerImage));
+            collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, starImage));
+            collectables.push(new Collectable(random(0, width), random(0, height), 100, 100, knifeImage));
         }, 3000);  
     }
+    
     
     function createNewBadCollectible() {
         setTimeout(() => {
