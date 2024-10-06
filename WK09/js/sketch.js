@@ -5,11 +5,11 @@ var orchidImage,thunderImage, clickImage;
 var treeImage1,treeImage2,treeImage3;
 var daggerImage, starImage, knifeImage;
 var walkingBombImage, floatingBombImage, batBombImage;
+var backgroundSound, runningfeetSound, biteSound, bombSound;
 var myAnimation;
 var myFont;
 var mySound;
 var health = 100, timerValue = 60, score = 0;
-var backgroundSound, runningfeetSound, biteSound, bombSound;
 var gameOver = false;
 var resetGame;
 var currentGoodCollectable;
@@ -22,24 +22,20 @@ function preload() {
     runningfeetSound = loadSound('./sound/runningfeet.wav');
     biteSound = loadSound('./sound/bitesound.wav');
     bombSound = loadSound('./sound/bombSound.mp3')
-    //Sprite Images
+    //Load Sprite Images
     attackPaths = loadStrings("./images/attack/attack.txt");
     climbPaths = loadStrings("./images/climb/climb.txt");
     deadPaths = loadStrings("./images/dead/dead.txt");
     idlePaths = loadStrings("./images/idle/idle.txt");
     walkPaths = loadStrings("./images/walk/walk.txt");
-    //Colletable Images
+    //Load Colletable Images
     daggerImage = loadImage("./images/dagger.png");
     starImage = loadImage("./images/star.png");
     knifeImage = loadImage("./images/knife.png");
-    //badColletable Images
+    //Load badColletable Images
     floatingBombImage = loadImage("./images/floatingBomb.png");
     walkingBombImage = loadImage("./images/walkingBomb.png");
     batBombImage = loadImage("./images/batBomb.png");
-    //Sounds
-    backgroundSound = loadSound("../sound/background.mp3");
-    biteSound = loadSound("../sound/bitesound.wav");
-    runningfeetSound = loadSound("../sound/runningfeet.wav");
     //Font
     myFont = loadFont("fonts/ProtestRiot-Regular.ttf");
     
@@ -51,23 +47,26 @@ function timeIt() {
         timerValue = 0;
     }
 }
+
 function keyIsPressed() {
     if (backgroundSound.isLoaded()) {
         backgroundSound.loop();
-        backgroundSound.setVolume (.01)
         userStartAudio();
     }
 }
+
 
 function setup() {
     createCanvas(900, 700);
     textAlign(CENTER);
     setInterval(timeIt, 1000);
-        
-    // Play background sound (looping)
-    if (backgroundSound.isLoaded()) {
-        backgroundSound.loop(); // Will loop the background music
-    }
+    
+        // Play background sound in a loop
+        if (backgroundSound.isLoaded()) {
+            backgroundSound.loop();
+            backgroundSound.setVolume(0.3); // Adjust volume to your preference
+        }
+
     
     //Collectables in random positions
     collectables.push(new Collectable(random(50, width -50), random(50, height -50), 100, 100, daggerImage));
